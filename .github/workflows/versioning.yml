@@ -26,19 +26,19 @@ jobs:
           git confing user.email "github-actions@github.com"
 
       - name: Check working status
-        run:
+        run: |
           if ! git diff-index --quiet HEAD --; then 
             git stash
           fi
 
       - name: Increment version
         id: increment_version
-        run: 
+        run: |
           NEW_VERSION=$(npm version patch -m "🖋️ Increase Version to %s")
           echo "NEW version: $NEW_VERSION"
           echo "NEW_VERSION=$NEW_VERSION" >>$GITHUB_ENV
           echo "name=NEW_VERSION=$NEW_VERSION" >>$GITHUB_OUTPUT
 
       - name; Push changes
-        run:
+        run: |
           git push
